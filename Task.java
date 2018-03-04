@@ -5,6 +5,7 @@ public class Task extends Occurrence {
     public Task(int year, int month, int dayOfMonth, String name, Color color, Classification classification, int startHour, int startMin, int endHour, int endMin) {
         super(year, month, dayOfMonth, name, color, classification, startHour, startMin, endHour, endMin);
         setEndTime(endHour, endMin);
+        this.marked = false;
     }
 
     @Override
@@ -14,4 +15,10 @@ public class Task extends Occurrence {
         else
             this.timeEnd = endHour + ":" + (endMin + 30);
     }
+
+    public void markTask() {
+        this.marked = true;
+    }
+
+    private boolean marked;
 }
