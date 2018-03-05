@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +20,7 @@
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <GridPane fx:id="miniCalendar" layoutX="34.0" layoutY="171.0" prefHeight="154.0" prefWidth="166.0">
+            <GridPane fx:id="miniCalendar" layoutX="22.0" layoutY="171.0" prefHeight="164.0" prefWidth="194.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,293 +36,34 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="25.0" text="1" textFill="WHITE" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Avenir 85 Heavy" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
             </GridPane>
-            <Label alignment="CENTER" layoutX="31.0" layoutY="348.0" prefHeight="25.0" prefWidth="46.0" text="View" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="30.0" layoutY="356.0" prefHeight="25.0" prefWidth="46.0" text="View" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <CheckBox layoutX="31.0" layoutY="374.0" mnemonicParsing="false" text="Event" textFill="WHITE">
+            <CheckBox fx:id="viewEvent" layoutX="30.0" layoutY="382.0" mnemonicParsing="false" text="Event" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="14.0" />
                </font>
             </CheckBox>
-            <CheckBox layoutX="31.0" layoutY="399.0" mnemonicParsing="false" text="Task  " textFill="WHITE">
+            <CheckBox fx:id="viewTask" layoutX="30.0" layoutY="407.0" mnemonicParsing="false" text="Task  " textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="14.0" />
                </font>
             </CheckBox>
-            <Label alignment="CENTER" layoutX="31.0" layoutY="119.0" prefHeight="26.0" prefWidth="93.0" text="March 2018" textFill="WHITE">
+            <Label fx:id="monYearLabel" alignment="CENTER" layoutX="17.0" layoutY="119.0" prefHeight="26.0" prefWidth="108.0" text="March 2018" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="153.0" layoutY="119.0" prefHeight="26.0" prefWidth="25.0" text="&lt;" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="23.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="S" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="179.0" layoutY="119.0" prefHeight="26.0" prefWidth="25.0" text="&gt;" textFill="WHITE">
-               <font>
-                  <Font name="Avenir 85 Heavy" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="32.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="S" textFill="WHITE">
-               <font>
-                  <Font name="Avenir 85 Heavy" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="53.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="M" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="52.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="M" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
@@ -330,29 +73,39 @@
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="101.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="W" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="106.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="W" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="127.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="T" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="138.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="T" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="153.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="F" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="166.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="F" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="179.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="S" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="189.0" layoutY="145.0" prefHeight="26.0" prefWidth="25.0" text="S" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="36.0" layoutY="60.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #dc654d;" text="Create" textFill="WHITE">
+            <Button fx:id="createButton" layoutX="36.0" layoutY="60.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="32.0" prefWidth="166.0" style="-fx-background-color: #dc654d;" text="Create" textFill="WHITE">
                <font>
                   <Font name="Avenir 85 Heavy" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="nextButton" layoutX="175.0" layoutY="113.0" minWidth="46.0" mnemonicParsing="false" onAction="#nextMonth" prefHeight="32.0" prefWidth="46.0" style="-fx-background-color: transparent;" text="&gt;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir 85 Heavy" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="prevButton" layoutX="148.0" layoutY="113.0" minWidth="46.0" mnemonicParsing="false" onAction="#prevMonth" prefHeight="32.0" prefWidth="46.0" style="-fx-background-color: transparent;" text="&lt;" textFill="WHITE">
+               <font>
+                  <Font name="Avenir 85 Heavy" size="18.0" />
                </font>
             </Button>
          </children>
@@ -364,15 +117,49 @@
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="158.0" layoutY="22.0" text="March 1, 2018">
+            <Label fx:id="selectedDate" alignment="CENTER" layoutX="136.0" layoutY="22.0" prefHeight="22.0" prefWidth="150.0" text="March 1, 2018">
                <font>
                   <Font name="Avenir 85 Heavy" size="16.0" />
                </font>
             </Label>
-            <CheckBox layoutX="468.0" layoutY="21.0" mnemonicParsing="false" text="Agenda View" />
-            <CheckBox layoutX="382.0" layoutY="21.0" mnemonicParsing="false" text="Weekly" />
-            <CheckBox layoutX="313.0" layoutY="21.0" mnemonicParsing="false" text="Daily" />
-            <AnchorPane layoutX="27.0" layoutY="65.0" prefHeight="386.0" prefWidth="545.0" />
+            <CheckBox fx:id="agendaBox" layoutX="468.0" layoutY="21.0" mnemonicParsing="false" onAction="#viewAll" text="Agenda View" />
+            <CheckBox fx:id="selectWeekly" layoutX="382.0" layoutY="21.0" mnemonicParsing="false" onAction="#checkWeekly" text="Weekly" />
+            <CheckBox fx:id="selectDaily" layoutX="313.0" layoutY="21.0" mnemonicParsing="false" onAction="#checkDaily" text="Daily" />
+            <AnchorPane fx:id="agendaPane" layoutX="27.0" layoutY="65.0" prefHeight="386.0" prefWidth="545.0">
+               <children>
+                  <AnchorPane fx:id="agendaPane" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="addPane" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="eventNameBox" layoutX="14.0" layoutY="23.0" prefHeight="26.0" prefWidth="290.0" />
+                        <CheckBox fx:id="taskCheck" layoutX="159.0" layoutY="67.0" mnemonicParsing="false" onAction="#checkTask" prefHeight="38.0" prefWidth="73.0" text="Task" />
+                        <CheckBox fx:id="eventCheck" layoutX="53.0" layoutY="67.0" mnemonicParsing="false" onAction="#checkEvent" prefHeight="38.0" prefWidth="73.0" text="Event" />
+                        <TextField fx:id="dateBox" layoutX="16.0" layoutY="118.0" prefHeight="26.0" prefWidth="75.0" />
+                        <TextField fx:id="sTimeBox" layoutX="186.0" layoutY="118.0" prefHeight="26.0" prefWidth="46.0" />
+                        <Label alignment="CENTER" layoutX="233.0" layoutY="112.0" prefHeight="38.0" prefWidth="60.0" text="to">
+                           <font>
+                              <Font name="Avenir 85 Heavy" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="addButton" layoutX="246.0" layoutY="174.0" mnemonicParsing="false" onAction="#saveEvent" prefHeight="38.0" prefWidth="82.0" text="Save">
+                           <font>
+                              <Font name="Avenir 85 Heavy" size="12.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="eTimeBox" layoutX="298.0" layoutY="118.0" prefHeight="26.0" prefWidth="46.0" />
+                        <Button fx:id="cancelButton" layoutX="342.0" layoutY="174.0" mnemonicParsing="false" onAction="#cancel" prefHeight="38.0" prefWidth="82.0" text="Discard">
+                           <font>
+                              <Font name="Avenir 85 Heavy" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="agendaPane" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+            <ListView fx:id="listedEvents" layoutY="86.0" prefHeight="386.0" prefWidth="590.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0" />
          </children>
       </AnchorPane>
    </children>
