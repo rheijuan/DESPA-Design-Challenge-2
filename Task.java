@@ -2,7 +2,7 @@ package sample;
 
 public class Task extends Occurrence {
 
-    public Task(int year, int month, int dayOfMonth, String name, Color color, Classification classification, int startHour, int startMin, int endHour, int endMin) {
+    public Task(int year, int month, int dayOfMonth, String name, String color, Classification classification, int startHour, int startMin, int endHour, int endMin) {
         super(year, month, dayOfMonth, name, color, classification, startHour, startMin, endHour, endMin);
         setEndTime(endHour, endMin);
         this.marked = false;

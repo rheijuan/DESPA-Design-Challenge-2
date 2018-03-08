@@ -1,136 +1,181 @@
 package sample;
 
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
-@SuppressWarnings("MagicConstant")
 public class CalendarController implements Initializable {
 
-    @FXML
-    private GridPane miniCalendar;
+    @FXML private GridPane miniCalendar;
+
+    @FXML private CheckBox selectDaily;
+
+    @FXML private CheckBox selectWeekly;
+
+    @FXML private Label monYearLabel;
+
+    @FXML private Label selectedDate;
+
+    @FXML private AnchorPane addPane;
+
+    @FXML private AnchorPane agendaPane;
+
+    @FXML private CheckBox eventCheck;
+
+    @FXML private CheckBox taskCheck;
+
+    @FXML private TextField eventNameBox;
+
+    @FXML private TextField dateBox;
+
+    @FXML private TextField sTimeBox;
+
+    @FXML private TextField eTimeBox;
+
+    @FXML private CheckBox agendaBox;
+
+    @FXML private CheckBox viewEvent;
+
+    @FXML private CheckBox viewTask;
+
+    @FXML private ListView listedEvents;
+
+    @FXML private ComboBox changeYearBox;
+
+    @FXML private TableView<TimeSlot> tableView;
+
+    @FXML private AnchorPane tablePane;
+
+    @FXML private TableColumn<TimeSlot, String> timeColumn;
+
+    @FXML private TableColumn<TimeSlot, String> eventColumn;
+
+    @FXML private Button removeButton;
+
+    @FXML private Button doneButton;
 
     @FXML
-    private CheckBox selectDaily;
+    private void changeYear() {
+        int selected = Integer.parseInt(changeYearBox.getSelectionModel().getSelectedItem().toString());
+        refreshCalendar(monthToday, selected);
+    }
 
     @FXML
-    private CheckBox selectWeekly;
-
-    @FXML
-    private Label monYearLabel;
-
-    @FXML
-    private Label selectedDate;
-
-    @FXML
-    private AnchorPane addPane;
-
-    @FXML
-    private AnchorPane agendaPane;
-
-    @FXML
-    private CheckBox eventCheck;
-
-    @FXML
-    private CheckBox taskCheck;
-
-    @FXML
-    private TextField eventNameBox;
-
-    @FXML
-    private TextField dateBox;
-
-    @FXML
-    private TextField sTimeBox;
-
-    @FXML
-    private TextField eTimeBox;
-
-    @FXML
-    private CheckBox agendaBox;
-
-    @FXML
-    private CheckBox viewEvent;
-
-    @FXML
-    private CheckBox viewTask;
-
-    @FXML
-    private ListView listedEvents;
-
-    @FXML
-    private void viewAll(ActionEvent event) {
+    private void viewAll() {
+        tablePane.setVisible(false);
         String[] date = monYearLabel.getText().split(" ");
+        boolean both = false;
 
         if(agendaBox.isSelected()) {
+            agendaPane.setVisible(true);
             listedEvents.getItems().clear();
             listedEvents.setVisible(true);
+            Text a = new Text();
+
+            if(viewEvent.isSelected() && viewTask.isSelected())
+                both = true;
 
             // If the user wants to see only events in a selected date
-            if (selectDaily.isSelected() && viewEvent.isSelected()) {
-                listedEvents.getItems().add("Daily Agenda");
+            if (selectDaily.isSelected() && viewEvent.isSelected() && !both) {
+                a.setText("Daily Agenda");
+                a.setFont(Font.font("Avenir 85 Heavy", 14));
+                listedEvents.getItems().add(a);
                 for (Occurrence o : cModel.getEventlist().getEvents()) {
                     if (o.getDate().get(Calendar.YEAR) == Integer.parseInt(date[1]) &&
                             o.getDate().get(Calendar.MONTH) == (convertFromString(date[0]) - 1) &&
                             o.getDate().get(Calendar.DAY_OF_MONTH) == daySelected) {
-                        if (o instanceof Event)
-                            listedEvents.getItems().add(o.toString());
+                        if (o instanceof Event) {
+                            Text t = new Text(o.getStartHour() + ":" + o.getStartMin() + "-" + o.getEndHour() + ":" + o.getEndMin() + " " + o.getName());
+                            t.setFont(Font.font("Avenir 85 Heavy", 14));
+                            t.setFill(Color.GREEN);
+                            listedEvents.getItems().add(t);
+                        }
                     }
                 }
             }
 
             // If the user wants to see only tasks in a selected date
-            else if(selectDaily.isSelected() && viewTask.isSelected()) {
-                listedEvents.getItems().add("Daily Agenda");
+            else if(selectDaily.isSelected() && viewTask.isSelected() && !both) {
+                a.setText("Daily Agenda");
+                a.setFont(Font.font("Avenir 85 Heavy", 14));
+                listedEvents.getItems().add(a);
                 for (Occurrence o : cModel.getEventlist().getEvents()) {
                     if (o.getDate().get(Calendar.YEAR) == Integer.parseInt(date[1]) &&
                             o.getDate().get(Calendar.MONTH) == (convertFromString(date[0]) - 1) &&
                             o.getDate().get(Calendar.DAY_OF_MONTH) == daySelected) {
-                        if (o instanceof Task)
-                            System.out.println(o.toString());
+                        if (o instanceof Task) {
+                            Text t = new Text(o.getStartHour() + ":" + o.getStartMin() + "-" + o.getEndHour() + ":" + o.getEndMin() + " " + o.getName());
+                            t.setFont(Font.font("Avenir 85 Heavy", 14));
+                            t.setFill(Color.BLUE);
+                            listedEvents.getItems().add(t);
+                        }
                     }
                 }
             }
 
             // If the user wants to see tasks and events in a selected day
-            else if(selectDaily.isSelected() && viewTask.isSelected() && viewEvent.isSelected()) {
-                listedEvents.getItems().add("Daily Agenda");
+            else if(selectDaily.isSelected() && viewTask.isSelected() && viewEvent.isSelected() && both) {
+                a.setText("Daily Agenda");
+                a.setFont(Font.font("Avenir 85 Heavy", 14));
+                listedEvents.getItems().add(a);
                 for (Occurrence o : cModel.getEventlist().getEvents()) {
                     if (o.getDate().get(Calendar.YEAR) == Integer.parseInt(date[1]) &&
                             o.getDate().get(Calendar.MONTH) == (convertFromString(date[0]) - 1) &&
-                            o.getDate().get(Calendar.DAY_OF_MONTH) == daySelected)
-                            System.out.println(o.toString());
+                            o.getDate().get(Calendar.DAY_OF_MONTH) == daySelected) {
+                        if(o instanceof Event) {
+                            Text t = new Text(o.getStartHour() + ":" + o.getStartMin() + "-" + o.getEndHour() + ":" + o.getEndMin() + " " + o.getName());
+                            t.setFont(Font.font("Avenir 85 Heavy", 14));
+                            t.setFill(Color.GREEN);
+                            listedEvents.getItems().add(t);
+                        }
+                        else {
+                            Text t = new Text(o.getStartHour() + ":" + o.getStartMin() + "-" + o.getEndHour() + ":" + o.getEndMin() + " " + o.getName());
+                            t.setFont(Font.font("Avenir 85 Heavy", 14));
+                            t.setFill(Color.BLUE);
+                            listedEvents.getItems().add(t);
+                        }
+                    }
                 }
             }
         }
     }
 
     @FXML
-    private void checkTask(ActionEvent event) {
+    private void checkTask() {
         taskCheck.setSelected(true);
         eventCheck.setSelected(false);
         eTimeBox.setDisable(true);
     }
 
     @FXML
-    private void checkEvent(ActionEvent event) {
+    private void checkEvent() {
         eventCheck.setSelected(true);
         taskCheck.setSelected(false);
         eTimeBox.setDisable(false);
     }
 
     @FXML
-    private void addEvent(ActionEvent event) {
+    private void addEvent() {
         dateBox.setText("");
         sTimeBox.setText("");
         eTimeBox.setText("");
@@ -149,35 +194,46 @@ public class CalendarController implements Initializable {
     }
 
     @FXML
-    private void saveEvent(ActionEvent event) {
+    private void markEvent() {
+        String[] selectedEvent = ((Text) listedEvents.getSelectionModel().getSelectedItem()).getText().split(" ");
+        // If the event has the same name and the event is a task
+        for(Occurrence o : cModel.getEventlist().getEvents()) {
+            if(o.getName().equals(selectedEvent[1])) {
+                if (o instanceof Task) {
+                    doneButton.setVisible(true);
+                    removeButton.setVisible(true);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void saveEvent() {
         if(eventCheck.isSelected()) {
             String[] date = dateBox.getText().split("/");
             String[] startTime = sTimeBox.getText().split(":");
             String[] endTime = eTimeBox.getText().split(":");
             Event e = new Event(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]), eventNameBox.getText(),
-                                Color.toColor("green"), Classification.toClassification("event"),
-                                Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
-                                Integer.parseInt(endTime[0]), Integer.parseInt(endTime[1]));
-            cModel.getEventlist().addOccurrence(e);
+                    "green", Classification.toClassification("event"),
+                    Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
+                    Integer.parseInt(endTime[0]), Integer.parseInt(endTime[1]));
+            if(cModel.isValid(e))
+                cModel.getEventlist().addOccurrence(e);
+            else
+                System.out.println("Invalid");
         }
         else {
             String[] date = dateBox.getText().split("/");
             String[] startTime = sTimeBox.getText().split(":");
-            int min = 0, hour = 0;
-            if(Integer.parseInt(startTime[1]) == 30) {
-                min = 0;
-                hour = Integer.parseInt(startTime[0]) + 1;
-            }
-            else {
-                hour = Integer.parseInt(startTime[0]);
-                min = 30;
-            }
 
-            Event e = new Event(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]), eventNameBox.getText(),
-                    Color.toColor("blue"), Classification.toClassification("task"),
+            Task t = new Task(Integer.parseInt(date[2]), Integer.parseInt(date[0]), Integer.parseInt(date[1]), eventNameBox.getText(),
+                    "blue", Classification.toClassification("task"),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
-                    hour, min);
-            cModel.getEventlist().addOccurrence(e);
+                    Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]));
+            if(cModel.isValid(t))
+                cModel.getEventlist().addOccurrence(t);
+            else
+                System.out.println("Invalid");
         }
         addPane.setVisible(false);
         clearMiniCalendar();
@@ -190,7 +246,7 @@ public class CalendarController implements Initializable {
     }
 
     @FXML
-    private void nextMonth(ActionEvent event) {
+    private void nextMonth() {
         if(monthToday == 11) {
             monthToday = 0;
             yearToday += 1;
@@ -204,7 +260,7 @@ public class CalendarController implements Initializable {
     }
 
     @FXML
-    private void prevMonth(ActionEvent event) {
+    private void prevMonth() {
         if(monthToday == 0) {
             monthToday = 11;
             yearToday -= 1;
@@ -218,14 +274,20 @@ public class CalendarController implements Initializable {
     }
 
     @FXML
-    private void checkDaily(ActionEvent event) {
+    private void checkDaily() {
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
+
+        tableView.setItems(getEventsDaily());
+
         selectDaily.setSelected(true);
         selectWeekly.setSelected(false);
+        tablePane.setVisible(true);
         addPane.setVisible(false);
     }
 
     @FXML
-    private void checkWeekly(ActionEvent event) {
+    private void checkWeekly() {
         selectWeekly.setSelected(true);
         selectDaily.setSelected(false);
         addPane.setVisible(false);
@@ -236,16 +298,26 @@ public class CalendarController implements Initializable {
         cModel = new CalendarModel();
         daySelected = 1;
 
-        GregorianCalendar cal = new GregorianCalendar();
+        Calendar cal = Calendar.getInstance();
         int yearBound = cal.get(GregorianCalendar.YEAR);
         monthToday = cal.get(GregorianCalendar.MONTH);
+        dayToday = cal.get(GregorianCalendar.DAY_OF_WEEK);
         yearToday = yearBound;
 
-        monYearLabel.setText(convert(monthToday) + " " + yearToday);
+        selectedDate.setText(convertFullMonth(convert(monthToday)) + " " + cal.get(Calendar.DAY_OF_MONTH) + ", " + cal.get(Calendar.YEAR));
 
         addPane.setVisible(false);
         agendaPane.setVisible(false);
         listedEvents.setVisible(false);
+        tablePane.setVisible(false);
+
+        changeYearBox.setValue(String.valueOf(yearToday));
+
+        for(int i = yearToday - 100; i < yearToday + 100; i++)
+            changeYearBox.getItems().add(String.valueOf(i));
+
+        doneButton.setVisible(false);
+        removeButton.setVisible(false);
 
         refreshCalendar(monthToday, yearToday);
     }
@@ -253,6 +325,7 @@ public class CalendarController implements Initializable {
     private void refreshCalendar(int month, int year) {
         miniCalendar.getChildren().clear();
 
+        monYearLabel.setText(convert(month) + " " + year);
         GregorianCalendar cal = new GregorianCalendar(year, month, 1);
         int nod = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
         int som = cal.get(GregorianCalendar.DAY_OF_WEEK);
@@ -269,7 +342,7 @@ public class CalendarController implements Initializable {
                 button.setStyle("-fx-font-family: 'Avenir 85 Heavy'; -fx-font-size: 10px; -fx-background-color:  #dc654d; -fx-text-fill: #FFFFFF");
                 String[] my = monYearLabel.getText().split(" ");
                 dateBox.setText( convertFromString(my[0]) + "/" + daySelected + "/" + my[1]);
-                selectedDate.setText(convertFullMonth(my[0]) + " " + daySelected + ", " + my[1]);
+                selectedDate.setText(convertFullMonth(convert(monthToday)) + " " + daySelected + ", " + my[1]);
                 for(Node node : miniCalendar.getChildren())
                     if(node instanceof Button && Integer.parseInt(((Button) node).getText()) != daySelected)
                         node.setStyle("-fx-font-family: 'Avenir 85 Heavy'; -fx-font-size: 10px; -fx-background-color: transparent; -fx-text-fill: #FFFFFF");
@@ -296,6 +369,32 @@ public class CalendarController implements Initializable {
             case 11: return "Dec";
         }
         return "January";
+    }
+
+    private ObservableList<TimeSlot> getEventsDaily() {
+        ObservableList<TimeSlot> times = FXCollections.observableArrayList();
+        int i = 0, j = 0;
+        String eventName = "";
+
+        while(i < 48) {
+
+            if(i % 2 == 0) {
+                for(Occurrence o : cModel.getEventlist().getEvents()) {
+                    if(o.getDay().equals(monthToday + "/" + daySelected + "/" + yearToday)) {
+                        if(o.getStartHour() == j && o.getStartMin() == 0) {
+
+                        }
+                    }
+                }
+                times.add(new TimeSlot((j + ":00"), eventName));
+                j++;
+            }
+            else
+                times.add(new TimeSlot("",eventName));
+            i++;
+        }
+
+        return times;
     }
 
     private int convertFromString(String month) {
@@ -342,6 +441,9 @@ public class CalendarController implements Initializable {
 
     private int yearToday;
     private int monthToday;
+    private int dayToday;
     private CalendarModel cModel;
     private int daySelected;
+
+
 }

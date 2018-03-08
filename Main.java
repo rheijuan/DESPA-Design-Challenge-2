@@ -10,9 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("calendar.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DesignChallenge2.fxml"));
         primaryStage.setTitle("Calendar Application");
         primaryStage.setScene(new Scene(root, 915, 570));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

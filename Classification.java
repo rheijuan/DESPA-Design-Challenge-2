@@ -1,12 +1,12 @@
-package model;
+package sample;
 
 public enum Classification {
 
-    Holiday, Event;
+    Task, Event;
 
     public String toString() {
         switch(this) {
-            case Holiday: return "Holiday";
+            case Task: return "Task";
             case Event: return "Event";
             default: return "Event";
         }
@@ -14,7 +14,7 @@ public enum Classification {
 
     public static Classification toClassification(String classification) {
         switch(classification.toLowerCase()) {
-            case "holiday": return Holiday;
+            case "task": return Task;
             case "event": return Event;
             default: return Event;
         }
