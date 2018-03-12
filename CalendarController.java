@@ -4,8 +4,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ScrollEvent;
@@ -14,9 +17,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class CalendarController implements Initializable {
@@ -267,12 +275,19 @@ public class CalendarController implements Initializable {
                     "green", Classification.toClassification("event"),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
                     Integer.parseInt(endTime[0]), Integer.parseInt(endTime[1]));
+            System.out.println(cModel.isValid(e));
             if(cModel.isValid(e)) {
                 cModel.getEventlist().addOccurrence(e);
                 cModel.getPsvParser().appendEvent(e);
             }
-            else
-                System.out.println("Invalid");
+            else {
+                Parent viewParent;
+                final Stage invalid = new Stage();
+                invalid.initModality(Modality.APPLICATION_MODAL);
+
+                invalidPopUp(invalid);
+            }
+
         }
         else {
             String[] date = dateBox.getText().split("/");
@@ -282,16 +297,36 @@ public class CalendarController implements Initializable {
                     "blue", Classification.toClassification("task"),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]));
+            System.out.println(cModel.isValid(t));
             if(cModel.isValid(t)) {
                 cModel.getEventlist().addOccurrence(t);
                 cModel.getCsvParser().appendEvent(t);
             }
-            else
-                System.out.println("Invalid");
+            else {
+                Parent viewParent;
+                final Stage invalid = new Stage();
+                invalid.initModality(Modality.APPLICATION_MODAL);
+
+                invalidPopUp(invalid);
+            }
         }
         addPane.setVisible(false);
 
         clearMiniCalendar();
+    }
+
+    private void invalidPopUp(Stage invalid) {
+        Parent viewParent;
+        try {
+            viewParent = FXMLLoader.load(getClass().getResource("invalid.fxml"));
+            Scene sc = new Scene(viewParent);
+
+            invalid.setScene(sc);
+            invalid.show();
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -500,8 +535,15 @@ public class CalendarController implements Initializable {
     }
 
     private void listEvents(ArrayList<Occurrence> o, boolean daily, boolean eventOnly, boolean both) {
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String[] time = dateFormat.format(cal.getTime()).split(" ");
+        String[] splitTime = time[1].split(":");
+        int hour = Integer.parseInt(splitTime[0]);
+        int min = Integer.parseInt(splitTime[0]);
+
         listedEvents.getItems().clear();
-        String[] date = monYearLabel.getText().split(" ");
 
         if(daily) {
             Text a = new Text();
@@ -512,10 +554,7 @@ public class CalendarController implements Initializable {
                 if (isToday(occ)) {
                     if(eventOnly && !both) {
                         if (occ instanceof Event) {
-                            Text t = new Text(occ.getStartHour() + ":" + occ.getStartMin() + "-" + occ.getEndHour() + ":" + occ.getEndMin() + " " + occ.getName());
-                            t.setFont(Font.font("Avenir 85 Heavy", 14));
-                            t.setFill(Color.GREEN);
-                            listedEvents.getItems().add(t);
+                            checkExpired(hour, occ);
                         }
                     }
 
@@ -525,10 +564,7 @@ public class CalendarController implements Initializable {
 
                     else {
                         if (occ instanceof Event) {
-                            Text t = new Text(occ.getStartHour() + ":" + occ.getStartMin() + "-" + occ.getEndHour() + ":" + occ.getEndMin() + " " + occ.getName());
-                            t.setFont(Font.font("Avenir 85 Heavy", 14));
-                            t.setFill(Color.GREEN);
-                            listedEvents.getItems().add(t);
+                            checkExpired(hour, occ);
                         }
                         else
                             addTask(occ);
@@ -539,9 +575,18 @@ public class CalendarController implements Initializable {
         }
     }
 
+    private void checkExpired(int hour, Occurrence occ) {
+        if(occ.getStartHour() >= hour) {
+            Text t = new Text(occ.getStartHour() + ":" + convertMin(occ.getStartMin()) + "-" + occ.getEndHour() + ":" + convertMin(occ.getEndMin()) + " " + occ.getName());
+            t.setFont(Font.font("Avenir 85 Heavy", 14));
+            t.setFill(Color.GREEN);
+            listedEvents.getItems().add(t);
+        }
+    }
+
     private void addTask(Occurrence occ) {
         if(occ instanceof Task) {
-            Text t = new Text(occ.getStartHour() + ":" + occ.getStartMin() + "-" + occ.getEndHour() + ":" + occ.getEndMin() + " " + occ.getName());
+            Text t = new Text(occ.getStartHour() + ":" + convertMin(occ.getStartMin()) + "-" + occ.getEndHour() + ":" + convertMin(occ.getEndMin()) + " " + occ.getName());
             t.setFont(Font.font("Avenir 85 Heavy", 14));
             t.setFill(Color.BLUE);
             if (((Task) occ).isMarked()) {
@@ -732,6 +777,19 @@ public class CalendarController implements Initializable {
                 o.getDate().get(Calendar.DAY_OF_MONTH) == daySelected;
     }
 
+    private void clearMiniCalendar() {
+        for(Node node : miniCalendar.getChildren())
+            if(node instanceof Button)
+                node.setStyle("-fx-font-family: 'Avenir 85 Heavy'; -fx-font-size: 10px; -fx-background-color: transparent; -fx-text-fill: #FFFFFF");
+    }
+
+    private String convertMin(int min) {
+        if(min == 0)
+            return "00";
+
+        return "30";
+    }
+
     private String convert(int month) {
         switch(month) {
             case 0: return "Jan";
@@ -766,12 +824,6 @@ public class CalendarController implements Initializable {
             case "Dec": return 12;
         }
         return 1;
-    }
-
-    private void clearMiniCalendar() {
-        for(Node node : miniCalendar.getChildren())
-            if(node instanceof Button)
-                node.setStyle("-fx-font-family: 'Avenir 85 Heavy'; -fx-font-size: 10px; -fx-background-color: transparent; -fx-text-fill: #FFFFFF");
     }
 
     private String convertFullMonth(String month) {
