@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-public class PSVParser {
+public class PSVParser implements DataParser{
 
     public PSVParser() {
         events = new ArrayList<>();
