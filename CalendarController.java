@@ -275,7 +275,6 @@ public class CalendarController implements Initializable {
                     "green", Classification.toClassification("event"),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
                     Integer.parseInt(endTime[0]), Integer.parseInt(endTime[1]));
-            System.out.println(cModel.isValid(e));
             if(cModel.isValid(e)) {
                 cModel.getEventlist().addOccurrence(e);
                 cModel.getPsvParser().appendEvent(e);
@@ -297,7 +296,6 @@ public class CalendarController implements Initializable {
                     "blue", Classification.toClassification("task"),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]),
                     Integer.parseInt(startTime[0]), Integer.parseInt(startTime[1]));
-            System.out.println(cModel.isValid(t));
             if(cModel.isValid(t)) {
                 cModel.getEventlist().addOccurrence(t);
                 cModel.getCsvParser().appendEvent(t);
