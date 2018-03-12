@@ -4,35 +4,37 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class TimeSlot {
 
-    public TimeSlot(String time, String event) {
+    public TimeSlot(String time, String name, String classification) {
         this.time = new SimpleStringProperty(time);
-        this.event = new SimpleStringProperty(event);
+        this.name = new SimpleStringProperty(name);
+        this.classification = classification;
     }
 
     public String getTime() {
         return time.get();
     }
 
-    public String getEvent() {
-        return event.get();
-    }
-
-    public SimpleStringProperty timeProperty() {
-        return time;
-    }
-
-    public SimpleStringProperty eventProperty() {
-        return event;
-    }
-
     public void setTime(String time) {
         this.time.set(time);
     }
 
-    public void setEvent(String event) {
-        this.event.set(event);
+    public String getName() {
+        return this.name.get();
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
     }
 
     private SimpleStringProperty time;
-    private SimpleStringProperty event;
+    private SimpleStringProperty name;
+    private String classification;
 }

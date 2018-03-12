@@ -6,10 +6,10 @@ public interface DataParser {
 
     void readData();
 
-    void appendEvent(Event event);
+    void appendEvent(Occurrence event);
 
-    void reWriteData(ArrayList<Event> events);
+    void reWriteData(ArrayList<Occurrence> events);
 
-    ArrayList<Event> getEvents();
+    ArrayList<Occurrence> getEvents();
 
 }

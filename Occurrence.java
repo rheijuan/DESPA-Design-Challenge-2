@@ -35,7 +35,7 @@ public class Occurrence {
 
     public String toString() {
         return (date.get(Calendar.MONTH)+1) + "/" + date.get(Calendar.DAY_OF_MONTH) + "/" + date.get(Calendar.YEAR)
-                + "-" + name + "-" + color + "-" + classification.toString();
+                + "-" + name + "-" + color + "-" + classification.toString() + "-" + timeStart + "-" + timeEnd;
     }
 
     public String getDay() {

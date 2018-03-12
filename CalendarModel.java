@@ -4,10 +4,10 @@ public class CalendarModel {
 
     public CalendarModel() {
         eventlist = new EventList();
-    }
+        csvParser = new CSVParser();
+        psvParser = new PSVParser();
 
-    public EventList getEventlist() {
-        return eventlist;
+        readData();
     }
 
     public boolean isValid(Occurrence o) {
@@ -51,5 +51,30 @@ public class CalendarModel {
         return true;
     }
 
+    private void readData() {
+        csvParser.readData();
+        psvParser.readData();
+
+        for(int i = 0; i < csvParser.getEvents().size(); i++)
+            eventlist.getEvents().add(csvParser.getEvents().get(i));
+
+        for(int i = 0; i < psvParser.getEvents().size(); i++)
+            eventlist.getEvents().add(psvParser.getEvents().get(i));
+    }
+
+    public EventList getEventlist() {
+        return eventlist;
+    }
+
+    public CSVParser getCsvParser() {
+        return csvParser;
+    }
+
+    public PSVParser getPsvParser() {
+        return psvParser;
+    }
+
     private EventList eventlist;
+    private CSVParser csvParser;
+    private PSVParser psvParser;
 }

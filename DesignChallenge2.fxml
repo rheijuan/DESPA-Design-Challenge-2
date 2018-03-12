@@ -44,12 +44,12 @@
             <Font name="Avenir 85 Heavy" size="16.0" />
          </font>
       </Label>
-      <CheckBox fx:id="viewEvent" layoutX="30.0" layoutY="393.0" mnemonicParsing="false" text="Event" textFill="WHITE">
+      <CheckBox fx:id="viewEvent" layoutX="30.0" layoutY="393.0" mnemonicParsing="false" onAction="#eventOnly" text="Event" textFill="WHITE">
          <font>
             <Font name="Avenir 85 Heavy" size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="viewTask" layoutX="30.0" layoutY="418.0" mnemonicParsing="false" text="Task  " textFill="WHITE">
+      <CheckBox fx:id="viewTask" layoutX="30.0" layoutY="418.0" mnemonicParsing="false" onAction="#taskOnly" text="Task  " textFill="WHITE">
          <font>
             <Font name="Avenir 85 Heavy" size="14.0" />
          </font>
@@ -161,30 +161,30 @@
                <AnchorPane fx:id="agendaPane" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
                      <ListView fx:id="listedEvents" onMouseClicked="#markEvent" prefHeight="386.0" prefWidth="546.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     <Button fx:id="removeButton" alignment="CENTER" layoutX="410.0" layoutY="355.0" mnemonicParsing="false" onAction="#removeEvent" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 100;" text="Remove">
+                        <font>
+                           <Font name="Avenir 85 Heavy" size="14.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="doneButton" alignment="CENTER" layoutX="273.0" layoutY="355.0" mnemonicParsing="false" onAction="#markAsDone" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 100;" text="Mark as Done">
+                        <font>
+                           <Font name="Avenir 85 Heavy" size="14.0" />
+                        </font>
+                     </Button>
                   </children>
                </AnchorPane>
-               <AnchorPane fx:id="tablePane" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <AnchorPane fx:id="tablePane" prefHeight="386.4" prefWidth="545.6">
                   <children>
-                     <TableView fx:id="tableView" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <columns>
-                           <TableColumn fx:id="timeColumn" editable="false" prefWidth="96.00006103515625" text="Time" />
-                           <TableColumn fx:id="eventColumn" prefWidth="448.7998962402344" text="Event" />
-                        </columns>
+                     <TableView fx:id="dailyView" prefHeight="386.4" prefWidth="545.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <columns>
+                         <TableColumn fx:id="timeColumn" prefWidth="75.0" text="Time" />
+                         <TableColumn fx:id="eventColumn" prefWidth="469.5999694824219" text="Event" />
+                       </columns>
                      </TableView>
                   </children>
                </AnchorPane>
             </children>
          </AnchorPane>
-         <Button fx:id="removeButton" alignment="CENTER" layoutX="454.0" layoutY="444.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 100;" text="Remove">
-            <font>
-               <Font name="Avenir 85 Heavy" size="14.0" />
-            </font>
-         </Button>
-         <Button fx:id="doneButton" alignment="CENTER" layoutX="304.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000; -fx-border-radius: 100;" text="Mark as Done">
-            <font>
-               <Font name="Avenir 85 Heavy" size="14.0" />
-            </font>
-         </Button>
       </children>
    </AnchorPane>
 </AnchorPane>

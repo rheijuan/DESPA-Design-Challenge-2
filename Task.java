@@ -10,14 +10,15 @@ public class Task extends Occurrence {
 
     @Override
     public void setEndTime(int endHour, int endMin) {
-        if(endMin + 30 == 60)
-            this.timeEnd = (endHour + 1) + ":" + 00;
-        else
-            this.timeEnd = endHour + ":" + (endMin + 30);
+        this.timeEnd = endHour + ":" + endMin;
     }
 
     public void markTask() {
         this.marked = true;
+    }
+
+    public boolean isMarked() {
+        return marked;
     }
 
     private boolean marked;
